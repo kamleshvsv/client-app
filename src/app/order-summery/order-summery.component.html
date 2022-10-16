@@ -1,0 +1,69 @@
+ <!-- ***** Main Banner Area Start ***** -->
+ <div class="page-heading" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-content">
+                    <h2>Cart</h2>
+                    <span>Shopping and Enjoy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
+
+
+<!-- ***** Product Area Starts ***** -->
+<section class="section" id="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-75">
+              <div class="container">
+                <form >
+                
+                  <div class="row">
+                    <div class="col-50">
+                      <h3>Billing Address</h3>
+                      <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                      <input *ngIf="userData && userData.firstName" type="text" id="fname" name="firstname" value={{userData.firstName}} placeholder="John M. Doe">
+                      <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                      <input *ngIf="userData && userData.email" type="text" id="email" name="email" readonly value={{userData.email}} placeholder="john@example.com">
+                      <label for="adr"><i class="fa fa-map-marker"></i> Address</label>
+                      <input *ngIf="userData" type="text" id="adr" name="address" value="Indore" placeholder="542 W. 15th Street">
+                  
+                  
+                    </div>
+          
+                    <div class="col-50">
+                      <h3>Payment</h3>
+                      <label for="fname">Accepted Cards</label>
+                      <div class="icon-container">
+                        <i class="fa fa-cc-visa" style="color:navy;"></i>
+                        <i class="fa fa-cc-amex" style="color:blue;"></i>
+                        <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                        <i class="fa fa-cc-discover" style="color:orange;"></i>
+                      </div>
+                    
+                    </div>
+                    
+                  </div>
+                  <label>
+                    <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                  </label>
+                  <input [disabled]="carList && carList.length === 0" value="Continue to checkout" (click)="checkout()" class="btn">
+                </form>
+              </div>
+            </div>
+            <div class="col-25" *ngIf="carList && carList.length > 0">
+              <div class="container">
+                <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b style="margin-left:5px">{{carList.length}}</b></span></h4>
+                <p *ngFor="let item of carList; let i = index"><a >{{item.title}}</a> <span class="price">₹ {{item.totalPrice}}</span></p>
+              
+                <hr>
+                <p>Total <span *ngIf="totalValue" class="price" style="color:black"><b>₹ {{totalValue}}</b></span></p>
+              </div>
+            </div>
+          </div>
+    </div>
+</section>

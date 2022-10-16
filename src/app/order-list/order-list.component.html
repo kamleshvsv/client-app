@@ -1,0 +1,65 @@
+ <!-- ***** Main Banner Area Start ***** -->
+ <div class="page-heading" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-content">
+                    <h2>Order History</h2>
+                    <span>Shopping and Enjoy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
+
+
+<!-- ***** Product Area Starts ***** -->
+<section class="section" id="product">
+    <div class="container">
+        <table class="table table-striped" *ngIf="orderDataList">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Date</th>
+                <!-- <th scope="col">Image</th> -->
+                <th scope="col">Product</th>
+                <!-- <th scope="col">Customer</th> -->
+                <th scope="col">Price / Qty</th>
+                <th scope="col">Total</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="orderDataList && orderDataList.orderDetails && orderDataList.orderDetails.length > 0">
+              <tr *ngFor="let cart of orderDataList.orderDetails; let i = index">
+                <th scope="row">{{i + 1}}</th>
+                <td>
+                    {{orderDataList.orderDate | date}}
+                </td>
+              
+                <td> <img *ngIf="cart.imageArray && cart.imageArray.length > 0" src={{cart.imageArray[0].imageUrl}} alt="product" width="30px" heigth="30px" /> 
+                    <span style="margin-left: 10px;">{{cart.title}}</span></td>
+                <!-- <td> <div>{{cart.customerName}}</div>
+                    <small>{{cart.customerEmail}}</small>
+                </td> -->
+                <td>  ₹ {{cart.price}} / {{cart.totalPrice / cart.price}}</td>
+                <td> ₹ {{cart.totalPrice}}</td>
+                <td (click)="cancelOrder(cart)" style="color: blue">Cancel</td>
+              
+              </tr>
+            </tbody>
+          </table>
+          <div  *ngIf="orderDataList && orderDataList.orderDetails.length > 0">
+            <h5 *ngIf="totalValue"> <span style="float: left;margin-right: 35px;" (click)="totalAmount()">Total Amount :₹ {{totalValue}}</span></h5>
+            <div style="text-align:end" >
+                <!-- <button class="cust-button" (click)="cancelOrder(orderDataList.orderDetails)">Cancel Order</button> -->
+            </div>
+        </div>
+        <div class="text-center" *ngIf="orderDataList && orderDataList.orderDetails && orderDataList.orderDetails.length === 0">
+            <h5>Empty Order List !!</h5>
+            <br/> 
+            <button class="cust-button" (click)="browseProduct()">Browse Product</button>
+        </div>
+       
+    </div>
+</section>

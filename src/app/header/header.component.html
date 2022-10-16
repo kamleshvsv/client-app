@@ -1,0 +1,41 @@
+ <!-- ***** Header Area Start ***** -->
+ <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a  routerLink="/" class="logo">
+                        ZeeWeeSoft UI
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li class="scroll-to-section"><a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+                        <li class="scroll-to-section"><a routerLink="/service" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Service</a></li>
+                        <li class="scroll-to-section"><a routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a></li>
+                        <li class="submenu" *ngIf="userData && userData.email">
+                            <a href="javascript:;">Categories</a>
+                            <ul *ngIf="categoryData && categoryData.length > 0">
+
+                                <li *ngFor="let cat of categoryData; let i = index"><a >{{cat.title}}</a></li>
+                              
+                            </ul>
+                        </li>
+                        <li class="scroll-to-section" *ngIf="userData && userData.email"><a routerLink="/cart" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >Cart</a></li>
+                        <li class="scroll-to-section" *ngIf="userData && userData.email"><a routerLink="/order-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >My Order</a></li>
+                       
+                        
+                        <li  *ngIf="userData && userData.email" class="scroll-to-section" ><a style="cursor:pointer" (click)="logOut()">Log Out</a></li>
+                        <!-- <li  *ngIf="userData ===  class="scroll-to-section" ><a routerLink="/login">Login</a></li> -->
+                    </ul>        
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ***** Header Area End ***** -->

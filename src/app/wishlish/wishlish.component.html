@@ -1,0 +1,23 @@
+<div>
+    <div *ngIf="wishlistProduct && wishlistProduct.length > 0">
+  <owl-carousel-o [options]="customOptions">
+
+    <ng-container *ngFor="let slide of wishlistProduct;let i = index">
+      <ng-template carouselSlide [id]="slide.id" >
+        <img *ngIf="slide.imageArray && slide.imageArray.length  === 0" width="200px" height="250px" src="./../../assets/images/baner-right-image-04.jpg" [alt]="slide.title" [title]="slide.title">
+        <img  *ngIf="slide.imageArray && slide.imageArray.length > 0"  width="200px" height="250px" [src]="slide.imageArray[0].imageUrl" [alt]="slide.title" [title]="slide.title">
+        <div class="text-center" style="margin-top:15px ;">
+            <h5>{{slide.title}}</h5>
+            <p><em style="font-size:12px">{{slide.description}}</em></p>
+            <a style="color: blue;cursor: pointer;" (click)="goToSinglePage(slide)" >View Details</a>
+          </div>  
+    </ng-template>
+      
+    </ng-container>
+
+  </owl-carousel-o>
+</div>
+  <div class="text-center" *ngIf="wishlistProduct && wishlistProduct.length === 0"> 
+    <h4>Record Not Found . Please Add Product to Wishlist</h4>
+  </div>
+</div>

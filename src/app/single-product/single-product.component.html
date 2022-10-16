@@ -1,0 +1,87 @@
+ <!-- ***** Main Banner Area Start ***** -->
+ <div class="page-heading" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inner-content">
+                    <h2>Single Product Page</h2>
+                    <span *ngIf="singleProductData && singleProductData.title">{{ singleProductData.title}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ***** Main Banner Area End ***** -->
+
+
+<!-- ***** Product Area Starts ***** -->
+<section class="section" id="product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+            <div class="left-images">
+                
+                <img *ngIf="singleProductData && singleProductData.imageArray  && singleProductData.imageArray.length === 0" src='./../../assets/images/baner-right-image-04.jpg'  alt="Product Img" height="350px">
+                <img *ngIf="singleProductData && singleProductData.imageArray && singleProductData.imageArray.length > 0" width="100%" src={{singleProductData.imageArray[0].imageUrl}}  alt="" height="350px">
+              
+                <!-- <img src="assets/images/single-product-02.jpg" alt=""> -->
+            </div>
+            <div *ngIf="singleProductData && singleProductData.imageArray && singleProductData.imageArray.length > 0" style="display:flex">
+                <span  *ngFor="let img of singleProductData.imageArray; let i = index">
+                    <img *ngIf="i < 5" src={{img.imageUrl}}  alt=""  width="100px" height="100px" style="margin-right: 3px;"/>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="right-content">
+                <h4 *ngIf="singleProductData && singleProductData.title"> {{singleProductData.title}}  <a >
+                    <i *ngIf="singleProductData.wishlist" class="fa fa-heart" style="color: red;"></i>
+                    <i  *ngIf="!singleProductData.wishlist" class="fa fa-heart" ></i>
+                </a></h4>
+                <span *ngIf="singleProductData && singleProductData.price" class="price"> ₹ {{singleProductData.price}}</span>
+                <ul class="stars">
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                    <li><i class="fa fa-star"></i></li>
+                </ul>
+                
+
+                <span *ngIf="singleProductData && singleProductData.description">{{singleProductData.description}}</span>
+                <br/>
+                    <div class="right-content">
+                        <div class="increment-item">
+                            <div class="span-btn" (click)="onDecrement()">-</div>
+                            <div class="increment-value">{{counter}}</div>
+                            <div class="span-btn" (click)="onIncrement()">+</div>
+                            <!-- <button class="add-to-cat">Add To Cart</button> -->
+                        </div>
+                    </div>
+                   
+                    <br/>
+                <div class="total">
+                    <h4 *ngIf="singleProductData && singleProductData.price">Total: ₹ {{counter * singleProductData.price}}</h4>
+                        <br/>
+                    <div class="main-border-button"><a (click)="addToCart(counter, singleProductData )">Add To Cart</a></div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Product Area Ends ***** -->
+
+<section class="section" id="men">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-heading">
+                    <h2>Favourite Product's</h2>
+                    <span>Communication is at the heart of e-commerce and community.</span>
+                </div>
+            </div>
+        </div>
+        <app-wishlish></app-wishlish>
+    </div>
+</section>
